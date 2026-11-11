@@ -306,7 +306,7 @@
             color: var(--accent-primary);
         }
 
-        /* --- PROJECTS GRID --- */
+        /* --- SECTION HEADER --- */
         .section-header {
             display: flex;
             align-items: center;
@@ -319,6 +319,58 @@
 
         .section-header i { color: var(--accent-secondary); }
 
+        /* --- EDUCATION TIMELINE STYLE --- */
+        .education-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 18px 20px;
+            border-radius: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(5px);
+            background: rgba(56, 189, 248, 0.05);
+            border-color: var(--accent-primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .education-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .education-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .education-details p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* --- PROJECTS GRID --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -514,7 +566,7 @@
                 <div class="stats">
                      <div class="stat-item">
                         <h3>สถานะ</h3>
-                         <p>นักศึกษาปี1 (เทียบโอน)</p>
+                         <p>นักศึกษาปี2 (เทียบโอน)</p>
                     </div>
                 </div>
             </div>
@@ -547,6 +599,50 @@
                         <div>
                             <strong>Performance</strong><br>
                             <span style="font-size: 12px; color: var(--text-secondary);">SEO, Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- เพิ่มส่วนประวัติการศึกษาตรงนี้ -->
+            <div class="glass-card">
+                <div class="section-header">
+                    <i class="fas fa-graduation-cap"></i> ประวัติการศึกษา (Education)
+                </div>
+                <div class="education-list">
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-university"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับปริญญาตรี</h4>
+                            <p>คณะวิทยาศาสตร์ สาขาวิชาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏอุดรธานี (พ.ศ. 2568–ปัจจุบัน)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-school"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.)</h4>
+                            <p>วิทยาลัยเทคนิคอุดรธานี (ปวส.1–ปวส.2)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-school"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับประกาศนียบัตรวิชาชีพ (ปวช.)</h4>
+                            <p>วิทยาลัยเทคนิคอุดรธานี (ปวช.1–ปวช.3)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-book"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับมัธยมศึกษาตอนต้น</h4>
+                            <p>โรงเรียนเทศบาล 2 มุขมนตรี (ม.1–ม.3)</p>
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-icon"><i class="fas fa-child"></i></div>
+                        <div class="education-details">
+                            <h4>ระดับประถมศึกษา</h4>
+                            <p>โรงเรียนเทศบาล 2 มุขมนตรี (ป.1–ป.6)</p>
                         </div>
                     </div>
                 </div>
@@ -636,15 +732,13 @@
         const countDisplay = document.getElementById('contribution-count');
         
         function generateGraph() {
-            const days = 160; // จำนวนช่อง (ลดลงนิดหน่อยเพื่อให้สวยบนมือถือ)
+            const days = 160; 
             let totalActivity = 0;
 
             for(let i=0; i<days; i++) {
                 const day = document.createElement('div');
                 day.className = 'graph-day';
                 
-                // Random Level 0-4
-                // Biased towards 0 and 1 for realism
                 const rand = Math.random();
                 let level = 0;
                 if(rand > 0.85) level = 4;
@@ -655,7 +749,6 @@
                 day.classList.add(`level-${level}`);
                 if(level > 0) totalActivity++;
                 
-                // Tooltip effect (Simple title attribute for now)
                 day.title = `${level} contributions`;
                 
                 graphContainer.appendChild(day);
@@ -664,7 +757,7 @@
         }
         generateGraph();
 
-        // ===== CARD HOVER MOUSE EFFECT (Optional Polish) =====
+        // ===== CARD HOVER MOUSE EFFECT =====
         document.querySelectorAll('.project-card').forEach(card => {
             card.onmousemove = e => {
                 const rect = card.getBoundingClientRect();
